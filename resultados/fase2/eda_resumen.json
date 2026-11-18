@@ -1,0 +1,157 @@
+{
+ "secciones_en_6": 62048,
+ "secciones_en_6_con_p_definida_en_todas": 54892,
+ "rango_iqr_participacion_pp": {
+  "2009": 15.5,
+  "2012": 12.0,
+  "2015": 17.2,
+  "2018": 13.7,
+  "2021": 17.4,
+  "2024": 14.5
+ },
+ "salto_edad_25_35": {
+  "2009": {
+   "hombres": {
+    "edad": 35,
+    "pp": 1.3
+   },
+   "mujeres": {
+    "edad": 32,
+    "pp": 1.0
+   }
+  },
+  "2012": {
+   "hombres": {
+    "edad": 33,
+    "pp": 3.0
+   },
+   "mujeres": {
+    "edad": 33,
+    "pp": 3.1
+   }
+  },
+  "2015": {
+   "hombres": {
+    "edad": 31,
+    "pp": 1.7
+   },
+   "mujeres": {
+    "edad": 31,
+    "pp": 2.1
+   }
+  },
+  "2018": {
+   "hombres": {
+    "edad": 30,
+    "pp": 2.0
+   },
+   "mujeres": {
+    "edad": 30,
+    "pp": 2.2
+   }
+  },
+  "2021": {
+   "hombres": {
+    "edad": 30,
+    "pp": 1.4
+   },
+   "mujeres": {
+    "edad": 31,
+    "pp": 1.5
+   }
+  },
+  "2024": {
+   "hombres": {
+    "edad": 30,
+    "pp": 2.2
+   },
+   "mujeres": {
+    "edad": 30,
+    "pp": 2.1
+   }
+  }
+ },
+ "edad": {
+  "2009": {
+   "min_edad": 25,
+   "min_p": 33.8,
+   "max_edad": 65,
+   "max_p": 58.4,
+   "brecha_M_H_25_34": 10.4,
+   "p_18": 49.3,
+   "p_19_20": 39.4
+  },
+  "2012": {
+   "min_edad": 26,
+   "min_p": 52.2,
+   "max_edad": 62,
+   "max_p": 74.2,
+   "brecha_M_H_25_34": 12.3,
+   "p_18": 66.8,
+   "p_19_20": 57.5
+  },
+  "2015": {
+   "min_edad": 26,
+   "min_p": 34.7,
+   "max_edad": 68,
+   "max_p": 63.7,
+   "brecha_M_H_25_34": 11.3,
+   "p_18": 48.8,
+   "p_19_20": 39.7
+  },
+  "2018": {
+   "min_edad": 23,
+   "min_p": 52.0,
+   "max_edad": 67,
+   "max_p": 73.3,
+   "brecha_M_H_25_34": 11.6,
+   "p_18": 64.8,
+   "p_19_20": 56.1
+  },
+  "2021": {
+   "min_edad": 26,
+   "min_p": 39.5,
+   "max_edad": 69,
+   "max_p": 69.2,
+   "brecha_M_H_25_34": 11.1,
+   "p_18": 55.8,
+   "p_19_20": 46.5
+  },
+  "2024": {
+   "min_edad": 25,
+   "min_p": 47.0,
+   "max_edad": 65,
+   "max_p": 76.7,
+   "brecha_M_H_25_34": 13.5,
+   "p_18": 61.5,
+   "p_19_20": 51.9
+  }
+ },
+ "rural_menos_urbana_pp": {
+  "2009": 5.2,
+  "2012": 2.5,
+  "2015": 9.6,
+  "2018": 2.7,
+  "2021": 8.3,
+  "2024": 0.2
+ },
+ "pca_varianza_explicada": [
+  0.682,
+  0.147,
+  0.077,
+  0.048,
+  0.027,
+  0.018
+ ],
+ "varianza_total_nivel_vs_forma": {
+  "nivel": 0.674,
+  "forma": 0.326
+ },
+ "pct_seccion_eleccion_abs_r_mayor_30pp": 1.272,
+ "municipios_mapa_con_dato": "2388 de 2468",
+ "H5_pendiente_B_sobre_A": 0.713,
+ "H5_resid_DE_pp": 7.19,
+ "H5_pct_secciones_resid_menor_menos5pp": 23.44,
+ "H5_R2_municipio_del_residuo": 0.68,
+ "H5_R2_entidad_del_residuo": 0.404
+}

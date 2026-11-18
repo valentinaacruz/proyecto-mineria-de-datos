@@ -1,0 +1,17 @@
+# Datos: no se versionan; se regeneran con src/fase2/01_descargar.py y 02_construir_bases.py
+data/
+*.parquet
+*.gpkg
+*.zip
+*.part
+*.xlsx
+*.shp
+*.dbf
+
+# Python y entornos
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+
+# Sistema
+.DS_Store

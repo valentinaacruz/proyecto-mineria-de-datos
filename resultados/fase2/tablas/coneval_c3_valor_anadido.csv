@@ -1,0 +1,16 @@
+objetivo,fuente,municipios,R2_cv_ridge,R2_cv_boosting,R2_cv_max
+IRS · índice,IRS,2467,0.982,0.962,0.982
+IRS · analfabeta_15,IRS,2467,0.989,0.98,0.989
+IRS · sin_derechohabiencia,IRS,2467,0.983,0.977,0.983
+IRS · piso_tierra,IRS,2467,0.984,0.967,0.984
+IRS · sin_refrigerador,IRS,2467,0.979,0.985,0.985
+Pobreza · pobreza,Pobreza,2464,0.826,0.838,0.838
+Pobreza · pobreza extrema,Pobreza,2464,0.84,0.839,0.84
+Pobreza · vulnerables por ingreso,Pobreza,2464,0.624,0.695,0.695
+Pobreza · ingreso < línea de pobreza,Pobreza,2464,0.739,0.772,0.772
+Pobreza · ingreso < línea de pobreza extrema,Pobreza,2464,0.78,0.779,0.78
+Pobreza · carencia seguridad social,Pobreza,2464,0.91,0.887,0.91
+Pobreza · carencia alimentación,Pobreza,2464,0.228,0.278,0.278
+Pobreza · carencia servicios básicos,Pobreza,2464,0.804,0.844,0.844
+Pobreza · rezago educativo,Pobreza,2464,0.894,0.898,0.898
+Pobreza · carencia vivienda,Pobreza,2464,0.824,0.813,0.824

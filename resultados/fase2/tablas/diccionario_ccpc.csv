@@ -1,0 +1,17 @@
+campo,descripcion_oficial,celdas_vacias,celdas_no_numericas,tipo,rango_observado
+AELEC,Año de la elección,0.0,0.0,entero,
+FELECCION,Fecha de la jornada electoral,,,texto,
+EDOCVE,Clave INE de entidad federativa,0.0,0.0,entero,
+EDONOM,Nombre de la entidad,,,texto,
+MPIOCVE,Clave INE de municipio (no coincide siempre con la del INEGI),0.0,0.0,entero,
+MPIONOM,Nombre del municipio,,,texto,
+SECCION,Sección electoral en el año correspondiente (numerada dentro de cada entidad),0.0,0.0,entero,
+TIPOSEC,"Tipo de sección en el año: U urbana, M mixta, R rural",,,texto,
+DEF,"Distrito electoral federal (marco DERFE 2021; en 2024, marco 2023)",44154.0,0.0,entero,
+DEL,"Distrito electoral local (marco DERFE 2021; en 2024, marco 2023)",65066.0,0.0,entero,
+SEXO,"0 hombres, 1 mujeres, 2 no binario (solo 2024)",0.0,0.0,entero,
+EDAD,Años cumplidos el día de la elección,0.0,0.0,entero,18–140
+LN,Lista nominal de los cuadernillos de las casillas,0.0,0.0,entero,
+SV,Registros con marca de voto,0.0,0.0,entero,
+NV,Registros sin marca de voto,0.0,0.0,entero,
+NS,"Registros no especificados (cuadernillo sin marcas, no disponible, solicitado por autoridad jurisdiccional o página faltante)",0.0,0.0,entero,

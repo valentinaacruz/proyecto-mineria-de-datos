@@ -1,0 +1,41 @@
+{
+ "irs_municipios_por_anio": {
+  "2010": 2456,
+  "2015": 2446,
+  "2020": 2469
+ },
+ "pobreza_municipios_por_anio": {
+  "2010": 2456,
+  "2015": 2446,
+  "2020": 2466
+ },
+ "pobreza_indicadores": [
+  "pobreza",
+  "pobreza_extrema",
+  "pobreza_moderada",
+  "vulnerables_por_carencia_social",
+  "vulnerables_por_ingreso",
+  "no_pobre_y_no_vulnerable",
+  "rezago_educativo",
+  "carencia_por_acceso_a_los_servicios_de_salud",
+  "carencia_por_acceso_a_la_seguridad_social",
+  "carencia_por_calidad_y_espacios_de_la_vivienda",
+  "carencia_por_acceso_a_los_servicios_basicos_en_la_vivienda",
+  "carencia_por_acceso_a_la_alimentacion",
+  "poblacion_con_al_menos_una_carencia_social",
+  "poblacion_con_tres_o_mas_carencias_sociales",
+  "poblacion_con_ingreso_inferior_a_la_linea_de_pobreza_por_ingresos",
+  "poblacion_con_ingreso_inferior_a_la_linea_de_pobreza_extrema_por_ingresos"
+ ],
+ "claves_inegi_asignadas_a_mas_de_un_municipio_ine": 0,
+ "cruce_metodo": {
+  "exacto": 2459,
+  "municipio_origen": 8,
+  "aproximado": 5,
+  "contenido": 5
+ },
+ "claves_ine_igual_inegi_pct": 44.6,
+ "indicadores_pobreza_no_encontrados": [],
+ "r_irs_vs_pobreza_2020": 0.781,
+ "r_irs_vs_pobreza_extrema_2020": 0.88
+}

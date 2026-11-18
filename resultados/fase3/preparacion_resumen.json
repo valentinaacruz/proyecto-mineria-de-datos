@@ -1,0 +1,24 @@
+{
+ "brechas_imputadas": 1,
+ "tabla_analitica": [
+  60934,
+  83
+ ],
+ "matriz_forma": [
+  60934,
+  6
+ ],
+ "correlacion_max_abs_entre_variables_z": 0.287,
+ "pca_varianza_explicada": [
+  0.27,
+  0.229,
+  0.165,
+  0.147,
+  0.103,
+  0.086
+ ],
+ "DE_r_por_eleccion_promedio": 11.1,
+ "DE_rc_por_eleccion_promedio": 6.18,
+ "columnas_sin_describir": [],
+ "celdas_sin_dato_en_matriz_forma": 0
+}

@@ -1,0 +1,23 @@
+{
+ "participacion_nacional_pct": {
+  "2009": 44.06,
+  "2012": 62.08,
+  "2015": 47.07,
+  "2018": 62.37,
+  "2021": 51.84,
+  "2024": 59.67
+ },
+ "universo_secciones": 60934,
+ "universo_pct_LN_2024": 88.67,
+ "universo_con_6_validas": 53050,
+ "pct_LN_2024_con_6_validas": 81.0,
+ "secciones_con_una_celda_imputada": 7884,
+ "faltantes_2012_no_aparece": 634,
+ "imputacion_RMSE_pp": {
+  "Promedio de la sección": 7.58,
+  "Promedio de la sección, mismo tipo de elección": 7.77,
+  "Sección + entidad × elección": 5.62,
+  "Sección + municipio × elección (elegido)": 4.29
+ },
+ "ventana_2009_2018_secciones": 60934
+}

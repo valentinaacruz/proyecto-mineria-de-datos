@@ -1,0 +1,85 @@
+columna,descripcion,unidad,origen,tipo,sin_dato
+sid,"Identificador de sección: entidad × 10,000 + sección",—,CCPC,int64,0
+entidad,Clave de entidad (1–32),—,CCPC 2024,int64,0
+mun_ine,"Municipio, clave INE de 2024 (entidad × 1,000 + municipio)",—,CCPC 2024,int64,0
+mun_inegi,"Municipio, clave INEGI (vía cruce_municipios_ine_inegi.csv)",—,Fase 2 §5,Int64,0
+distrito_federal_2024,"Distrito federal, marco 2023; solo para ubicar, no comparable con años previos",—,CCPC 2024,Int64,0
+tipo_seccion,"Urbana, mixta o rural en 2024",—,CCPC 2024,str,0
+LN_2024,Lista nominal 2024; peso de la sección en la lista nominal (criterio T4),personas,CCPC 2024,int64,0
+r_2009,Participación 2009 relativa a la nacional (imputada si imputado_2009),pp,01_seleccionar_limpiar.py,float64,0
+r_2012,Participación 2012 relativa a la nacional (imputada si imputado_2012),pp,01_seleccionar_limpiar.py,float64,0
+r_2015,Participación 2015 relativa a la nacional (imputada si imputado_2015),pp,01_seleccionar_limpiar.py,float64,0
+r_2018,Participación 2018 relativa a la nacional (imputada si imputado_2018),pp,01_seleccionar_limpiar.py,float64,0
+r_2021,Participación 2021 relativa a la nacional (imputada si imputado_2021),pp,01_seleccionar_limpiar.py,float64,0
+r_2024,Participación 2024 relativa a la nacional (imputada si imputado_2024),pp,01_seleccionar_limpiar.py,float64,0
+imputado_2009,La participación de 2009 fue imputada,—,01_seleccionar_limpiar.py,bool,0
+imputado_2012,La participación de 2012 fue imputada,—,01_seleccionar_limpiar.py,bool,0
+imputado_2015,La participación de 2015 fue imputada,—,01_seleccionar_limpiar.py,bool,0
+imputado_2018,La participación de 2018 fue imputada,—,01_seleccionar_limpiar.py,bool,0
+imputado_2021,La participación de 2021 fue imputada,—,01_seleccionar_limpiar.py,bool,0
+imputado_2024,La participación de 2024 fue imputada,—,01_seleccionar_limpiar.py,bool,0
+n_imputadas,Número de elecciones imputadas (0 o 1),—,01_seleccionar_limpiar.py,int8,0
+rv_2009,"Participación 2009 relativa, imputada solo con la ventana 2009–2018 (T3)",pp,01_seleccionar_limpiar.py,float64,0
+rv_2012,"Participación 2012 relativa, imputada solo con la ventana 2009–2018 (T3)",pp,01_seleccionar_limpiar.py,float64,0
+rv_2015,"Participación 2015 relativa, imputada solo con la ventana 2009–2018 (T3)",pp,01_seleccionar_limpiar.py,float64,0
+rv_2018,"Participación 2018 relativa, imputada solo con la ventana 2009–2018 (T3)",pp,01_seleccionar_limpiar.py,float64,0
+nivel,Promedio de la participación relativa en las seis elecciones,pp,02_construir_variables.py,float64,0
+tendencia,"Cambio por elección (3 años), descontado el vaivén",pp/elección,02_construir_variables.py,float64,0
+vaiven,"Presidenciales − intermedias, descontada la tendencia, relativo al vaivén nacional",pp,02_construir_variables.py,float64,0
+volatilidad,DE del residuo de la regresión nivel + tendencia + vaivén (3 gl),pp,02_construir_variables.py,float64,0
+nivel_v,nivel calculada solo con 2009–2018 (T3),pp,02_construir_variables.py,float64,0
+tendencia_v,tendencia calculada solo con 2009–2018 (T3),pp/elección,02_construir_variables.py,float64,0
+vaiven_v,vaiven calculada solo con 2009–2018 (T3),pp,02_construir_variables.py,float64,0
+volatilidad_v,volatilidad calculada solo con 2009–2018 (T3),pp,02_construir_variables.py,float64,0
+cambio_ajustado,H5: nivel 2018–2024 menos el esperado por regresión a la media desde 2009–2015,pp,02_construir_variables.py,float64,0
+brecha_joven,"(Participación 18–34 − 55–74) menos la nacional, promedio de elecciones observadas",pp,02_construir_variables.py,float64,0
+brecha_joven_v,brecha_joven calculada solo con 2009–2018 (T3),pp,02_construir_variables.py,float64,0
+brecha_genero,"(Mujeres − hombres, 18–54) menos la nacional, promedio de elecciones observadas",pp,02_construir_variables.py,float64,0
+brecha_genero_v,brecha_genero calculada solo con 2009–2018 (T3),pp,02_construir_variables.py,float64,0
+log_volatilidad,Logaritmo natural de la volatilidad,log pp,04_formatear.py,float64,0
+log_volatilidad_v,log_volatilidad calculada solo con 2009–2018 (T3),log pp,04_formatear.py,float64,0
+brecha_imputada,La sección no tenía registros de algún grupo de edad o sexo,—,04_formatear.py,bool,0
+escolaridad_promedio,Indicador del ECEG 2020 por sección (escolaridad_promedio); valor del municipio si la sección no tiene dato,años,ECEG 2020,float64,0
+pct_analfabeta,Indicador del ECEG 2020 por sección (pct_analfabeta); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_sin_escolaridad,Indicador del ECEG 2020 por sección (pct_sin_escolaridad); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_lengua_indigena,Indicador del ECEG 2020 por sección (pct_lengua_indigena); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_nacio_otra_entidad,Indicador del ECEG 2020 por sección (pct_nacio_otra_entidad); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_otra_entidad_2015,Indicador del ECEG 2020 por sección (pct_otra_entidad_2015); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_sin_derechohabiencia,Indicador del ECEG 2020 por sección (pct_sin_derechohabiencia); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_imss,Indicador del ECEG 2020 por sección (pct_imss); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_seguro_popular,Indicador del ECEG 2020 por sección (pct_seguro_popular); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_piso_tierra,Indicador del ECEG 2020 por sección (pct_piso_tierra); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_sin_drenaje,Indicador del ECEG 2020 por sección (pct_sin_drenaje); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_agua_fuera,Indicador del ECEG 2020 por sección (pct_agua_fuera); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_sin_electricidad,Indicador del ECEG 2020 por sección (pct_sin_electricidad); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_refrigerador,Indicador del ECEG 2020 por sección (pct_refrigerador); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_lavadora,Indicador del ECEG 2020 por sección (pct_lavadora); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_internet,Indicador del ECEG 2020 por sección (pct_internet); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_computadora,Indicador del ECEG 2020 por sección (pct_computadora); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_celular,Indicador del ECEG 2020 por sección (pct_celular); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_automovil,Indicador del ECEG 2020 por sección (pct_automovil); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_un_dormitorio,Indicador del ECEG 2020 por sección (pct_un_dormitorio); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+ocupantes_por_vivienda,Indicador del ECEG 2020 por sección (ocupantes_por_vivienda); valor del municipio si la sección no tiene dato,personas por vivienda,ECEG 2020,float64,0
+tasa_pea,Indicador del ECEG 2020 por sección (tasa_pea); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_desocupada,Indicador del ECEG 2020 por sección (pct_desocupada); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_60_mas,Indicador del ECEG 2020 por sección (pct_60_mas); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_0_14,Indicador del ECEG 2020 por sección (pct_0_14); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_jefatura_femenina,Indicador del ECEG 2020 por sección (pct_jefatura_femenina); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_afro,Indicador del ECEG 2020 por sección (pct_afro); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+pct_discapacidad,Indicador del ECEG 2020 por sección (pct_discapacidad); valor del municipio si la sección no tiene dato,proporción,ECEG 2020,float64,0
+log_poblacion,Indicador del ECEG 2020 por sección (log_poblacion); valor del municipio si la sección no tiene dato,log(1 + personas),ECEG 2020,float64,0
+contexto_imputado,Algún indicador del ECEG tomado del municipio (28 secciones) o la pobreza tomada de la mediana de la entidad (17),—,03_integrar_contexto.py,bool,0
+log_LN_2024,Logaritmo de la lista nominal 2024,log personas,CCPC 2024,float64,0
+crecimiento_LN_anual_pct,Crecimiento anual de la lista nominal desde la primera elección en que aparece,%/año,CCPC,float64,0
+pct_pobreza_extrema,"Población en pobreza extrema del municipio, 2020",%,CONEVAL,Float64,0
+pct_ingreso_inferior_lp,"Población con ingreso inferior a la línea de pobreza, municipio, 2020",%,CONEVAL,Float64,0
+rc_2009,Trayectoria centrada: r_2009 − nivel,pp,04_formatear.py,float64,0
+rc_2012,Trayectoria centrada: r_2012 − nivel,pp,04_formatear.py,float64,0
+rc_2015,Trayectoria centrada: r_2015 − nivel,pp,04_formatear.py,float64,0
+rc_2018,Trayectoria centrada: r_2018 − nivel,pp,04_formatear.py,float64,0
+rc_2021,Trayectoria centrada: r_2021 − nivel,pp,04_formatear.py,float64,0
+rc_2024,Trayectoria centrada: r_2024 − nivel,pp,04_formatear.py,float64,0
+rvc_2009,Trayectoria centrada de la ventana: rv_2009 − nivel_v,pp,04_formatear.py,float64,0
+rvc_2012,Trayectoria centrada de la ventana: rv_2012 − nivel_v,pp,04_formatear.py,float64,0
+rvc_2015,Trayectoria centrada de la ventana: rv_2015 − nivel_v,pp,04_formatear.py,float64,0
+rvc_2018,Trayectoria centrada de la ventana: rv_2018 − nivel_v,pp,04_formatear.py,float64,0

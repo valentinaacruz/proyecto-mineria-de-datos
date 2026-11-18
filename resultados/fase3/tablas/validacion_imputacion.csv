@@ -1,0 +1,11 @@
+metodo,celdas,RMSE_pp,MAE_pp,sesgo_pp
+Promedio de la sección,10610,7.58,5.85,-0.0
+"Promedio de la sección, mismo tipo de elección",10610,7.77,5.61,-0.05
+Sección + entidad × elección,10610,5.62,4.14,0.01
+Sección + municipio × elección (elegido),10610,4.29,3.02,0.07
+"  elegido, solo 2009",1712,5.29,3.73,0.09
+"  elegido, solo 2012",1797,3.47,2.49,0.15
+"  elegido, solo 2015",1783,4.81,3.39,0.12
+"  elegido, solo 2018",1811,3.27,2.39,0.03
+"  elegido, solo 2021",1763,4.53,3.21,-0.07
+"  elegido, solo 2024",1744,4.04,2.95,0.07

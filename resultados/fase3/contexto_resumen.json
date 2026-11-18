@@ -1,0 +1,16 @@
+{
+ "eceg_secciones_con_proporcion_mayor_que_1_usando_VIVPAR_HAB": 15646,
+ "eceg_proporciones_mayores_que_1_tras_corregir": {},
+ "eceg_poblacion_menor_50_en_universo": 57,
+ "eceg_secciones_con_algun_indicador_imputado": 28,
+ "eceg_celdas_imputadas": 769,
+ "eceg_celdas_sin_dato_tras_imputar": 0,
+ "tipo_seccion_2024": {
+  "urbana": 39804,
+  "rural": 15369,
+  "mixta": 5761
+ },
+ "secciones_sin_distrito_2024": 0,
+ "pobreza_secciones_sin_dato": 17,
+ "pobreza_LN_2024_sin_dato_pct": 0.038
+}

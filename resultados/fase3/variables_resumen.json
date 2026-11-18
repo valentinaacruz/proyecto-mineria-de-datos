@@ -1,0 +1,31 @@
+{
+ "correlacion_diseno_t_P": 0.293,
+ "H5_pendiente_regresion_media": 0.715,
+ "brecha_joven_nacional_pp": {
+  "2009": -20.48,
+  "2012": -18.73,
+  "2015": -23.01,
+  "2018": -16.98,
+  "2021": -22.86,
+  "2024": -22.9
+ },
+ "brecha_genero_nacional_pp": {
+  "2009": 9.09,
+  "2012": 10.57,
+  "2015": 10.15,
+  "2018": 10.49,
+  "2021": 10.32,
+  "2024": 12.26
+ },
+ "brecha_joven_persistencia_r": 0.543,
+ "brecha_joven_sin_dato": 1,
+ "brecha_genero_persistencia_r": 0.695,
+ "brecha_genero_sin_dato": 0,
+ "max_R2_deciles_LN": 0.034,
+ "r_ventana_vs_completa": {
+  "nivel": 0.971,
+  "tendencia": 0.615,
+  "vaiven": 0.86,
+  "volatilidad": 0.704
+ }
+}

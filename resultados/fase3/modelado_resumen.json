@@ -1,0 +1,8 @@
+{
+ "secciones": 60934,
+ "municipios": 2461,
+ "replicas": 20,
+ "renglones_por_replica_mediana": 62006,
+ "pct_secciones_distintas_por_replica_mediana": 63.5,
+ "pct_municipios_distintos_por_replica_mediana": 63.1
+}

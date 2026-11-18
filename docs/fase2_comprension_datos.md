@@ -2,6 +2,7 @@
 
 **Proyecto:** Trayectorias de participación electoral en México: segmentación de secciones electorales 2009–2024
 **Versión:** borrador 1 (17 de noviembre de 2026)
+**Notebook con las gráficas y explicaciones:** [`notebooks/fase2_comprension_datos.ipynb`](../notebooks/fase2_comprension_datos.ipynb)
 
 Este documento cubre las cuatro tareas de la fase 2 de CRISP-DM 1.0 (Chapman et al., 2000) y la actividad 2.5 que agregó la fase 1:
 - 2.1 recolección inicial (§1);

@@ -9,13 +9,14 @@ Equipo: Cruz Mendoza Valentina Ayelen, Nava Villavicencio Abraham, Negrete Mance
 | Fase CRISP-DM | Documento | Estado |
 |---|---|---|
 | 1. Comprensión del negocio | [`docs/fase1_comprension_negocio.md`](docs/fase1_comprension_negocio.md) | Versión 2: umbrales fijados; pendiente la consulta con el profesor y el calendario |
-| 2. Comprensión de los datos | [`docs/fase2_comprension_datos.md`](docs/fase2_comprension_datos.md) | Borrador 1 para revisión del equipo |
+| 2. Comprensión de los datos | [`docs/fase2_comprension_datos.md`](docs/fase2_comprension_datos.md) · notebook [`notebooks/fase2_comprension_datos.ipynb`](notebooks/fase2_comprension_datos.ipynb) | Borrador 1 para revisión del equipo |
 | 3–6 | — | Por planear |
 
 ## Estructura
 
 ```
 docs/                 documentos de cada fase
+notebooks/            la misma fase calculada paso a paso desde los datos crudos, con gráficas y explicaciones
 src/comun.py          rutas y definiciones compartidas (participación, elecciones, bandas de edad)
 src/graficas.py       estilo y paleta de las figuras
 src/fase2/            scripts de la fase 2, numerados en orden de ejecución
@@ -34,4 +35,11 @@ uv run src/fase2/02_construir_bases.py
 uv run src/fase2/03_describir_calidad.py
 uv run src/fase2/04_explorar.py
 uv run src/fase2/05_comparar_coneval.py
+```
+
+Los notebooks hacen los mismos cálculos desde cero (descargan los datos si faltan), explicados paso a paso. La ejecución completa de la fase 2 tarda unos 15 minutos:
+
+```
+uv run --with jupyter --with pandas --with pyarrow --with openpyxl --with matplotlib --with jinja2 \
+       --with geopandas --with scikit-learn --with requests jupyter lab notebooks/
 ```

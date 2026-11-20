@@ -8,9 +8,9 @@ Equipo: Cruz Mendoza Valentina Ayelen, Nava Villavicencio Abraham, Negrete Mance
 
 | Fase CRISP-DM | Documento | Estado |
 |---|---|---|
-| 1. Comprensión del negocio | [`docs/fase1_comprension_negocio.md`](docs/fase1_comprension_negocio.md) | Versión 2: umbrales fijados; pendiente la consulta con el profesor y el calendario |
+| 1. Comprensión del negocio | [`docs/fase1_comprension_negocio.md`](docs/fase1_comprension_negocio.md) | Versión 3 (19-nov-2026): referencia de T3 ajustada; pendiente la consulta con el profesor y el calendario |
 | 2. Comprensión de los datos | [`docs/fase2_comprension_datos.md`](docs/fase2_comprension_datos.md) · notebook [`notebooks/fase2_comprension_datos.ipynb`](notebooks/fase2_comprension_datos.ipynb) | Borrador 1 para revisión del equipo |
-| 3. Preparación de los datos | [`docs/fase3_preparacion_datos.md`](docs/fase3_preparacion_datos.md) | Borrador 1 para revisión del equipo; deja listo el contrato para la fase 4 (§6) |
+| 3. Preparación de los datos | [`docs/fase3_preparacion_datos.md`](docs/fase3_preparacion_datos.md) | Borrador 2 (19-nov-2026): universo de 5 de 6 confirmado y T3 ajustado; deja listo el contrato para la fase 4 (§6) |
 | 4. Modelado | Plantilla [`src/fase4/plantilla_modelo.py`](src/fase4/plantilla_modelo.py) | Acordado: un modelo por integrante y un ensamble al final; falta asignar los modelos |
 | 5–6 | — | Por planear |
 

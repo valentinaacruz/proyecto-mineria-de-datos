@@ -105,6 +105,14 @@ def internas(X: np.ndarray, etiquetas: np.ndarray, pos: np.ndarray, distancia: C
     return {"silueta": float(sil), "davies_bouldin": float(davies_bouldin_score(Xs, ls))}
 
 
+def regiones_estados(T: pd.DataFrame, k: int) -> np.ndarray:
+    """Referencia de T3 (v3): los 32 estados ordenados por el nivel medio 2009-2018 de sus secciones y cortados en k
+    grupos de estados de tamaño parecido. Es «geografía con el mismo número de grupos»; solo usa la ventana 2009-2018."""
+    nivel_estado = T.nivel_v.groupby(T.entidad).mean()
+    region = pd.qcut(nivel_estado.rank(method="first"), k, labels=False)
+    return T.entidad.map(region).to_numpy()
+
+
 def _ari(a, b) -> float:
     from sklearn.metrics import adjusted_rand_score
     return float(adjusted_rand_score(a, b))
@@ -139,6 +147,8 @@ def evaluar_modelo(ajustar: Callable[[np.ndarray, int, int], np.ndarray], entrad
     ln, log_ln = T.LN_2024.to_numpy(float), T.log_LN_2024.to_numpy()
     obj = {a: (T[f"r_{a}"].to_numpy(), ~T[f"imputado_{a}"].to_numpy()) for a in (2021, 2024)}
     r2_ent = {a: eta2(y[m], T.entidad.to_numpy()[m]) for a, (y, m) in obj.items()}
+    regiones = {k: regiones_estados(T, k) for k in k_rango}
+    cuantiles_nivel = {k: pd.qcut(T.nivel_v, k, labels=False).to_numpy() for k in k_rango}
     rng = np.random.default_rng(SEMILLA)
     part = pd.DataFrame(index=T.index)
     filas = []
@@ -178,14 +188,20 @@ def evaluar_modelo(ajustar: Callable[[np.ndarray, int, int], np.ndarray], entrad
             fila["T2_ARI_medio"] = round(float(np.mean(aris)), 4)
             fila["T2_cumple"] = bool(fila["T2_ARI_medio"] >= UMBRAL_T2)
         log("T2 bootstrap")
-        # T3: grupos formados con 2009-2018 → R² de la participación relativa observada de 2021 y 2024
+        # T3 (v3 de la fase 1): grupos formados con 2009-2018 → R² de la participación relativa observada de 2021 y
+        # 2024. Cumple si supera a grupos al azar del mismo tamaño y a los estados agrupados en k regiones. Las 32
+        # entidades y los k cuantiles del nivel 2009-2018 se reportan solo como referencia.
         ev = np.asarray(ajustar(Xv, k, SEMILLA)).astype(int)
         part[f"ventana_k{k}"] = ev
+        reg = regiones[k]
+        niv = cuantiles_nivel[k]
         for a, (y, m) in obj.items():
-            r2 = eta2(y[m], ev[m])
-            azar = np.mean([eta2(y[m], rng.permutation(ev[m])) for _ in range(20)])
-            fila[f"T3_R2_{a}"], fila[f"T3_R2_{a}_azar"], fila[f"T3_R2_{a}_entidades"] = round(r2, 4), round(float(azar), 4), round(r2_ent[a], 4)
-        fila["T3_cumple"] = bool(all(fila[f"T3_R2_{a}"] > max(fila[f"T3_R2_{a}_azar"], fila[f"T3_R2_{a}_entidades"]) for a in obj))
+            fila[f"T3_R2_{a}"] = round(eta2(y[m], ev[m]), 4)
+            fila[f"T3_R2_{a}_azar"] = round(float(np.mean([eta2(y[m], rng.permutation(ev[m])) for _ in range(20)])), 4)
+            fila[f"T3_R2_{a}_regiones"] = round(eta2(y[m], reg[m]), 4)
+            fila[f"T3_R2_{a}_ref_32_entidades"] = round(r2_ent[a], 4)
+            fila[f"T3_R2_{a}_ref_cuantiles_nivel"] = round(eta2(y[m], niv[m]), 4)
+        fila["T3_cumple"] = bool(all(fila[f"T3_R2_{a}"] > max(fila[f"T3_R2_{a}_azar"], fila[f"T3_R2_{a}_regiones"]) for a in obj))
         fila["T4_cumple"] = bool(fila["T4_min_pct_LN"] >= UMBRAL_T4)
         fila["T5_cumple"] = bool(fila["T5_eta2_logLN"] < UMBRAL_T5)
         log("T3 ventana")

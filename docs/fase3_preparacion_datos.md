@@ -1,7 +1,7 @@
 # Fase 3 de CRISP-DM: preparación de los datos
 
 **Proyecto:** Trayectorias de participación electoral en México: segmentación de secciones electorales 2009–2024
-**Versión:** borrador 1 (18 de noviembre de 2026). Las decisiones marcadas con ⚑ están abiertas a revisión del equipo (§7).
+**Versión:** borrador 2 (19 de noviembre de 2026). El equipo confirmó el universo de 5 de 6 elecciones y ajustó el criterio T3 (§7); las decisiones marcadas con ⚑ siguen abiertas.
 
 Este documento cubre las cinco tareas de la fase 3 de CRISP-DM 1.0 (Chapman et al., 2000):
 - 3.1 selección de los datos (§1);
@@ -273,7 +273,7 @@ Probar modelos por separado y combinarlos después solo funciona si se prepara a
 | Muestra de evaluación | `modelado_muestra.parquet`, generado por `src/fase3/05_preparar_modelado.py` | Un orden aleatorio fijo de las secciones: las primeras 8,000 son la muestra por defecto. Las muestras son anidadas, así que una más chica está contenida en la grande |
 | Réplicas bootstrap | `modelado_bootstrap.parquet` (mismo script) | 20 réplicas iguales para todos: se remuestrean los 2,461 municipios con reemplazo y cada uno aporta todas sus secciones. La mediana de municipios distintos por réplica es el 63% |
 | Datos nulos (T1) | `nulo()` | Normal multivariante con la media y covarianza de la entrada, con semilla fija por réplica |
-| Evaluación común | `evaluar_modelo()` | Para k = 4 a 7: T1 (silueta frente al percentil 95 de 20 nulos), T2 (ARI medio frente a la partición completa en 20 réplicas), T3 (η² de la participación observada de 2021 y 2024 con grupos de la ventana, contra grupos al azar y contra las entidades), T4, T5, silueta y Davies-Bouldin en el espacio propio y en el común (`forma`). Aplica la regla de elección de k de la fase 1 |
+| Evaluación común | `evaluar_modelo()` | Para k = 4 a 7: T1 (silueta frente al percentil 95 de 20 nulos), T2 (ARI medio frente a la partición completa en 20 réplicas), T3 (η² de la participación observada de 2021 y 2024 con grupos de la ventana, contra grupos al azar y contra los estados agrupados en k regiones; versión 3 de la fase 1, §7), T4, T5, silueta y Davies-Bouldin en el espacio propio y en el común (`forma`). Aplica la regla de elección de k de la fase 1 |
 | Entrega | `guardar_modelo()` → `resultados/fase4/modelos/<nombre>/` | `particiones.csv.gz` (todas las k, réplicas y ventana), `metricas.csv` y `ficha.json` (autor, algoritmo, parámetros, semilla). Pesa menos de 1 MB y se sube al repositorio |
 | Lectura para el ensamble | `leer_modelos()`, `concordancia()` | Carga todas las entregas; `concordancia()` da el ARI entre pares de modelos (T7) |
 | Plantilla | [`src/fase4/plantilla_modelo.py`](../src/fase4/plantilla_modelo.py) | Cada integrante la copia y solo reescribe `ajustar()`. Con `--prueba` corre 2 réplicas y 2 nulos sin guardar nada |
@@ -296,7 +296,7 @@ Probar modelos por separado y combinarlos después solo funciona si se prepara a
 La integración del ensamble queda a cargo de Leonardo; las entregas permiten estas opciones:
 
 - **Matriz de coasociación** (Fred y Jain, 2005). Sobre la muestra fija, para cada par de secciones se calcula la fracción de modelos que las pusieron juntas. Esa matriz se agrupa, por ejemplo con enlace promedio, en k de 4 a 7. Para el resto de las secciones, la coasociación promedio con cada grupo de consenso se puede calcular con tablas de contingencia de cada modelo, sin formar la matriz completa.
-- **Selección y peso de los miembros.** «Los mejores métodos» se pueden definir como los que cumplen T2 y T4 con la evaluación común. Opcionalmente se pondera por su T3.
+- **Selección y peso de los miembros.** «Los mejores métodos» se pueden definir como los que cumplen T2 y T4 con la evaluación común. No conviene ponderarlos por su T3, porque T3 favorece a los modelos que agrupan por nivel (§7, decisión 6).
 - **Evaluación del consenso.** T2 se obtiene aplicando el mismo consenso en cada réplica con las particiones `boot_k*_r*` de los miembros. T3 se obtiene con las particiones `ventana_k*`. T4 y T5 se calculan directo. T1 no se traslada directo, porque cada miembro tiene su propio nulo en su propio espacio; se puede comparar la silueta del consenso en el espacio común contra los nulos de `forma`.
 
 **Modelos candidatos.** La propuesta compromete tres: K-means sobre las variables de forma, Ward y K-means con DTW sobre la trayectoria centrada. Si hay un cuarto, una opción es un modelo de mezclas gaussianas: da pertenencias graduales, algo útil si los datos son un continuo (R1). La asignación final la decide el equipo en la reunión.
@@ -313,14 +313,30 @@ La integración del ensamble queda a cargo de Leonardo; las entregas permiten es
 
 ## 7. Decisiones para revisión del equipo ⚑
 
-1. **Universo con 5 de 6 elecciones** (60,934 secciones) y no 6 de 6 (53,050). La versión estricta queda disponible con `n_imputadas == 0`.
+1. **Universo con 5 de 6 elecciones** (60,934 secciones) y no 6 de 6 (53,050). ✔ **Decidido por el equipo (19-nov-2026): 5 de 6.** La versión estricta sigue disponible con `n_imputadas == 0` para la prueba de robustez.
 2. **Lista nominal mínima de 200.** Subirla a 300 dejaría 58,109 secciones: 2,825 menos y 0.95 pp menos de la lista nominal 2024. Se cambia en `MIN_LN`, al inicio de `01_seleccionar_limpiar.py`.
 3. **Brecha de género en la matriz de agrupamiento.** La propuesta solo menciona la brecha juvenil, pero promete describir las secciones «por su comportamiento por edad y sexo». Además, la brecha de género es el rasgo más persistente (r = 0.70). Si el equipo prefiere no usarla, basta con quitar `z_brecha_genero` de la entrada.
 4. **Concurrencia con elecciones locales.** Habría que construir a mano la tabla entidad × elección con los calendarios electorales locales. Serviría para explicar el vaivén con el árbol, pero no es indispensable para agrupar.
 5. **Corrección del ECEG en la fase 2.** La fase 2 usó `VIVPAR_HAB` como denominador de los indicadores de vivienda (§4.1). Se repitió el criterio C3 con los denominadores corregidos, en una copia aparte y sin modificar la fase 2. **La decisión no cambia**: el R² del Índice de Rezago Social pasa de 0.982 a 0.979, el del ingreso inferior a la línea de pobreza de 0.772 a 0.768, y ningún indicador se mueve más de 0.011. Aun así, conviene corregir las fórmulas de `src/fase2/05_comparar_coneval.py` (líneas 211–214) para que el repositorio sea consistente. Se deja a la autora de la fase 2.
-6. **Referencia de las entidades en T3.** La fase 1 pide que el R² de los grupos supere al de las 32 entidades. En el universo de la fase 3, las entidades explican el 22% de la participación relativa de 2021 y el 29% de la de 2024. Con 4 a 7 grupos contra 32, la comparación es exigente por construcción, porque más grupos capturan más varianza. Se sugiere que el equipo confirme el criterio antes de modelar. Si lo cambia, debe hacerlo con la regla de la fase 1 (§3.3): por una razón del método, anotada en la tabla de versiones, y no porque un modelo no lo alcance.
+6. **Referencia de T3.** ✔ **Decidido por el equipo (19-nov-2026): los estados agrupados en k regiones sustituyen a las 32 entidades.** Quedó registrado como versión 3 de la fase 1. La evidencia se calculó en el universo de la fase 3 con la participación observada (sin imputar):
 
-Fuera de esa consulta sobre T3, no hubo motivo para ajustar los umbrales T1–T7 de la fase 1.
+   | Referencia | R² 2021 | R² 2024 |
+   |---|---|---|
+   | Grupos al azar del mismo tamaño | ~0.000 | ~0.000 |
+   | 32 entidades (v1) | 0.220 | 0.289 |
+   | **32 estados agrupados en k = 4 a 7 regiones por su nivel 2009–2018 (v3)** | 0.065–0.112 | 0.110–0.153 |
+   | k = 4 a 7 cuantiles del nivel 2009–2018 (solo referencia) | 0.475–0.518 | 0.427–0.466 |
+
+   **Por qué.**
+   - Contra el azar, cualquier partición gana.
+   - Contra las 32 entidades, la comparación mezcla la calidad de la tipología con el número de grupos. No es un efecto de los grados de libertad, porque con 60,934 secciones el R² ajustado casi no cambia (0.220 → 0.219). Es que 32 estados traen información geográfica real que se pierde al juntarlos en 4 a 7 grupos.
+   - La pregunta útil para el negocio es si la tipología dice más del comportamiento futuro que la geografía con el mismo número de grupos. Si no lo hace, para planear bastaría con agrupar estados.
+
+   Las regiones se forman solo con 2009–2018: se ordenan los estados por el nivel medio de sus secciones en la ventana y se cortan en k grupos de tamaño parecido (`regiones_estados()` en `src/modelado.py`). Las 32 entidades y los cuantiles del nivel se siguen reportando en `metricas.csv` como referencia. El cambio se decidió antes de correr los modelos del equipo, con la regla de la fase 1 (§3.3). Para ser transparentes: el problema se notó en la prueba técnica de la plantilla (§6.4), donde el K-means de ejemplo no superaba a las 32 entidades. Pero la razón del cambio es del método, y las cifras de la tabla no dependen de ningún modelo.
+
+   **Advertencia para leer T3.** Cortar solo el nivel en k grupos predice el futuro mejor que cualquier otra referencia (0.43–0.52), porque la participación relativa futura depende sobre todo del nivel. Por eso T3 favorece a los modelos que agrupan por nivel. Los modelos sin nivel (`forma_sin_nivel`, trayectoria centrada) tendrán un T3 más bajo sin ser peores. **T3 sirve para elegir k dentro de un mismo modelo** (la regla de la fase 1), **no para comparar modelos entre sí.**
+
+Aparte de T3, no hubo motivo para ajustar los umbrales de la fase 1.
 
 ## 8. Estado de los riesgos tras la fase 3
 

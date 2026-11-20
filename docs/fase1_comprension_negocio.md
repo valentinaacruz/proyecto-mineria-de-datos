@@ -2,12 +2,13 @@
 
 **Proyecto:** Trayectorias de participación electoral en México: segmentación de secciones electorales 2009–2024
 **Equipo:** Cruz Mendoza Valentina Ayelen · Nava Villavicencio Abraham · Negrete Mancera Leonardo · Pérez Bustamante José Julian
-**Versión:** borrador 2 (17 de noviembre de 2026). Las secciones marcadas con ⚑ requieren decisión del equipo.
+**Versión:** borrador 3 (19 de noviembre de 2026). Las secciones marcadas con ⚑ requieren decisión del equipo.
 
 | Versión | Cambios |
 |---|---|
 | 1 | Primer borrador |
 | 2 | Se fijan los umbrales T1–T7 (v1) y la regla para ajustarlos; se adopta el ECEG 2020 como fuente de contexto; la elección entre el Índice de Rezago Social y la medición de pobreza pasa a la fase 2 |
+| 3 (19-nov-2026) | **T3:** la referencia de las 32 entidades se sustituye por los estados agrupados en el mismo número de grupos (k regiones). Razón del método, no de un resultado: comparar 4–7 grupos con 32 mezcla la calidad de la tipología con el número de grupos. Las 32 entidades explican el 22% y el 29% de la participación relativa de 2021 y 2024; agrupadas en 4 a 7 regiones, entre 7% y 15%. Se decidió antes de correr los modelos del equipo; el problema se notó en la prueba técnica de la plantilla, pero las cifras que lo justifican no dependen de ningún modelo. Detalle en la fase 3, §7 |
 
 Este documento sigue las cuatro tareas de la fase 1 de CRISP-DM 1.0 (Chapman et al., 2000): determinar los objetivos del negocio (§1), evaluar la situación (§2), determinar los objetivos de minería de datos (§3) y producir el plan del proyecto (§4).
 
@@ -185,7 +186,7 @@ La propuesta fijó como criterio una silueta mayor que 0.25. El trabajo previo m
 |---|---|---|---|---|
 | T1 | Estructura más allá de un continuo | Silueta y Davies-Bouldin frente a un nulo: 20 réplicas normales multivariantes con la misma covarianza | Silueta real > percentil 95 del nulo | Separa «hay grupos» de «hay un continuo cortado» |
 | T2 | Estabilidad | ARI medio entre réplicas bootstrap, remuestreando **municipios** (no secciones) | ≥ 0.60 | Remuestrear municipios respeta la dependencia espacial; el trabajo previo obtuvo 0.83 |
-| T3 | Validez temporal | Grupos formados con 2009–2018 → R² de la participación relativa de 2021 y 2024 | Mayor que el de grupos al azar del mismo tamaño y que el de las 32 entidades | Prueba que el grupo captura algo que persiste |
+| T3 | Validez temporal | Grupos formados con 2009–2018 → R² de la participación relativa de 2021 y 2024 | Mayor que el de grupos al azar del mismo tamaño y que el de los 32 estados agrupados en k regiones por su nivel 2009–2018 (**v3**; en v1: que el de las 32 entidades) | Prueba que el grupo captura algo que persiste y que dice más que la geografía con el mismo número de grupos |
 | T4 | Tamaño útil | Proporción de la lista nominal por grupo | Cada grupo ≥ 5% | Un grupo diminuto no justifica una estrategia |
 | T5 | No es un artefacto del tamaño | η² del log de la lista nominal entre grupos | < 0.10 | Riesgo señalado en la propuesta |
 | T6 | Árbol explicativo | Exactitud balanceada en validación cruzada **agrupada por entidad**; profundidad ≤ 4 | ≥ clase mayoritaria + 10 pp | La validación por entidad evita que el árbol memorice la geografía |
@@ -267,6 +268,10 @@ Para no adelantar el modelado, en esta comparación **no** se usa la relación d
 - Umbrales T1–T7 y regla de elección de k: fijados como versión 1 (§3.3), con la regla para ajustarlos.
 - ECEG 2020: se adopta como fuente principal de contexto por sección. Sustituye al ITER.
 - Índice de Rezago Social o medición de pobreza: se decide en la fase 2 (actividad 2.5) con los criterios de §4.4.
+
+**Tomadas (v3, 19-nov-2026)**
+- T3 se compara con los estados agrupados en k regiones en lugar de con las 32 entidades (tabla de versiones y §3.3). Las 32 entidades se siguen reportando como referencia.
+- Fase 4: cada integrante prueba un modelo de agrupamiento distinto y al final se combinan en un ensamble (acuerdo del 17-nov-2026; fase 3, §6).
 
 **Pendientes** ⚑
 1. Consultar con el profesor la reutilización del código y los hallazgos del hackathon.
